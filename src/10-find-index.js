@@ -11,8 +11,23 @@
  * For ([1, 2, 3], 2) should return 1
  *
  */
-function findIndex(/* array, value */) {
-  throw new Error('Not implemented');
+
+const bin = (array, value, s, e) => {
+  const middle = Math.floor((s + e) / 2);
+  if (value === array[middle]) {
+    return middle;
+  }
+  if (value > array[middle]) {
+    return bin(array, value, middle + 1, e);
+  }
+  if (value < array[middle]) {
+    return bin(array, value, s, middle - 1);
+  }
+  return false;
+};
+
+function findIndex(array, value) {
+  return bin(array, value, 0, array.length);
 }
 
 module.exports = findIndex;
